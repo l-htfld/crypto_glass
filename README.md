@@ -6,20 +6,20 @@
 
 1. Клонируйте репозиторий:
 
-```bash
+```
 git clone <url>
 cd okx-orderbook
-
+```
 2.Установите зависимости:
 
-```bash
+```
 pip install -r requirements.txt
-
+```
 3. Запустите скрипт:
 
-```bash
+```
 python orderbook_collector.py
-
+```
 Это подключит вас к WebSocket и начнёт собирать данные о стаканах для доступных инструментов.
 
 ### Объяснение:
