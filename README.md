@@ -18,7 +18,7 @@ pip install -r requirements.txt
 3. Запустите скрипт:
 
 ```
-python cryptotest.py
+python main_dict.py
 ```
 Это подключит вас к WebSocket и начнёт собирать данные о стаканах для доступных инструментов.
 
@@ -44,62 +44,32 @@ cd crypto_glass
 pip install -r requirements.txt
 ```
 
-2. Настройте Docker
-
-Для использования Docker, вам нужно создать два контейнера:
-- Контейнер с приложением.
-- Контейнер с Redis (если он еще не настроен).
-
-2.1. Создайте Docker-образа для приложения
-
-Создайте Docker-образ для вашего приложения:
-
-```bash
-docker build -t crypto-glass .
+2. Запустите Redis (Docker):
+```
+docker run -d --name my-redis -p 6379:6379 redis
 ```
 
-2.2. Запустите Redis в Docker
-
-Запустите контейнер Redis:
-
-```bash
-docker run --name redis -d redis:latest
+3.Запустите сборщик данных:
+```
+python main_doc.py
 ```
 
-2.3. Запустите приложения
-
-Запустите контейнер с приложением:
-
-```bash
-docker run --name crypto-glass --link redis -e REDIS_URL=redis://redis:6379 -p 5000:5000 -d crypto-glass
+## Логирование
+Топ-5 уровней bids и asks выводятся в консоль и файл orderbook.log:
+```
+2025-02-10 12:34:56,789 - INFO - Updated BTC-USDT | Bids: ['96419.10:0.0342', ...] | Asks: ['96426.00:0.2178', ...]
 ```
 
-- `--link redis`: связывает контейнер с Redis.
-- `REDIS_URL=redis://redis:6379`: устанавливает URL для подключения к Redis.
-- `-p 5000:5000`: перенаправляет порты для приложения (при необходимости, укажите порты для связи с API).
-
-3. Проверка
-
-После того как контейнеры будут запущены, приложение начнет получать данные ордербуков с OKX и сохранять их в Redis. Вы можете отслеживать логи с помощью команды:
-
-```bash
-docker logs -f crypto-glass
+## Проверка данных в Redis
+1. Подключитесь к Redis CLI:
 ```
-
-4. Завершение работы
-
-Для остановки контейнеров используйте команды:
-
-```bash
-docker stop crypto-glass
-docker stop redis
+docker exec -it my-redis redis-cli
 ```
-
-Чтобы удалить контейнеры:
-
-```bash
-docker rm crypto-glass
-docker rm redis
+2. Выполните команды:
+```
+KEYS *
+HGETALL orderbook:BTC-USDT
+ZRANGE orderbook:BTC-USDT:bids 0 -1 WITHSCORES
 ```
 
 ## Зависимости
