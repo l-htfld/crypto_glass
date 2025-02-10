@@ -2,4 +2,3 @@ aiohttp==3.8.1
 backoff==1.10.0
 sortedcontainers==2.4.0
 nest-asyncio==1.5.1
-redis==4.5.1
