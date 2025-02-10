@@ -51,7 +51,7 @@ docker run -d --name my-redis -p 6379:6379 redis
 
 3.Запустите сборщик данных:
 ```
-python main.py
+python main_doc.py
 ```
 
 ## Логирование
