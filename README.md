@@ -7,8 +7,8 @@
 1. Клонируйте репозиторий:
 
 ```
-git clone <url>
-cd okx-orderbook
+[git clone <url>](https://github.com/l-htfld/crypto_glass.git)
+cd crypto_glass
 ```
 2.Установите зависимости:
 
@@ -18,7 +18,7 @@ pip install -r requirements.txt
 3. Запустите скрипт:
 
 ```
-python orderbook_collector.py
+python cryptotest.py
 ```
 Это подключит вас к WebSocket и начнёт собирать данные о стаканах для доступных инструментов.
 
@@ -36,8 +36,8 @@ python orderbook_collector.py
 1. Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/your-username/okx-order-book-collector.git
-cd okx-order-book-collector
+git clone https://github.com/l-htfld/crypto_glass.git
+cd crypto_glass
 ```
 1.1 Установите зависимости:
 ```
@@ -55,7 +55,7 @@ pip install -r requirements.txt
 Создайте Docker-образ для вашего приложения:
 
 ```bash
-docker build -t okx-order-book-collector .
+docker build -t crypto-glass .
 ```
 
 2.2. Запустите Redis в Docker
@@ -71,7 +71,7 @@ docker run --name redis -d redis:latest
 Запустите контейнер с приложением:
 
 ```bash
-docker run --name order-book-collector --link redis -e REDIS_URL=redis://redis:6379 -p 5000:5000 -d okx-order-book-collector
+docker run --name crypto-glass --link redis -e REDIS_URL=redis://redis:6379 -p 5000:5000 -d crypto-glass
 ```
 
 - `--link redis`: связывает контейнер с Redis.
@@ -83,7 +83,7 @@ docker run --name order-book-collector --link redis -e REDIS_URL=redis://redis:6
 После того как контейнеры будут запущены, приложение начнет получать данные ордербуков с OKX и сохранять их в Redis. Вы можете отслеживать логи с помощью команды:
 
 ```bash
-docker logs -f order-book-collector
+docker logs -f crypto-glass
 ```
 
 4. Завершение работы
@@ -91,14 +91,14 @@ docker logs -f order-book-collector
 Для остановки контейнеров используйте команды:
 
 ```bash
-docker stop order-book-collector
+docker stop crypto-glass
 docker stop redis
 ```
 
 Чтобы удалить контейнеры:
 
 ```bash
-docker rm order-book-collector
+docker rm crypto-glass
 docker rm redis
 ```
 
