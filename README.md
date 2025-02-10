@@ -7,7 +7,7 @@
 1. Клонируйте репозиторий:
 
 ```
-(https://github.com/l-htfld/crypto_glass.git)
+git clone https://github.com/l-htfld/crypto_glass.git
 cd crypto_glass
 ```
 2.Установите зависимости:
